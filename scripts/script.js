@@ -43,11 +43,23 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerVictories = 0;
     let computerVictories = 0;
-    let matches = 0;
+    let draws = 0;
 
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("What's your gesture?");
         playerSelection = gestures[playerSelection.toLowerCase()];
+
+        let playerSelectionCheck = 0;
+        while (!playerSelectionCheck) {
+            if(playerSelection) {
+                playerSelectionCheck = 1;
+            }
+
+            if(!playerSelectionCheck) {
+                playerSelection = prompt("Enter your gesture again please");
+                playerSelection = gestures[playerSelection.toLowerCase()];
+            }
+        }
 
         let computerSelection = computerPlay();
 
@@ -62,13 +74,23 @@ function game() {
         }
 
         if (winner == 'none') {
-            matches++;
+            draws++;
         }
     }
 
-    let result = (playerVictories > computerVictories) ? 
-    `You win! Your score is ${playerVictories} and computer score is ${computerVictories}. There were ${matches} rounds with the same figures.` :
-    `You loose! Your score is ${playerVictories} and computer score is ${computerVictories} There were ${matches} rounds with the same figures.`;
+    let result = '';
+
+    if (playerVictories > computerVictories) {
+        result = `You win! Your score is ${playerVictories} and computer score is ${computerVictories}. There were ${draws} rounds with the same figures.`;
+    }
+
+    if (playerVictories < computerVictories) {
+        result = `You loose! Your score is ${playerVictories} and computer score is ${computerVictories} There were ${draws} rounds with the same figures.`;
+    }
+
+    if (playerVictories === computerVictories) {
+        result = `It's a draw! Your score is ${playerVictories} and computer score is ${computerVictories} There were ${draws} rounds with the same figures.`
+    }
 
     console.log(result);
 }
