@@ -11,68 +11,20 @@
     <div class="container">
         <h1 class="page-title">Rock, paper, scissors</h1>
 
-        <div class="game">
-            <div class="player player-1">
-                <div class="player__title">
-                    Player    
-                </div>
-
-                <div class="gestures">
-                    <div class="gestures__image-container">
-                        <img src="imgs/rock.png" class="gestures__item gestures__item_rock">
-                    </div>
-                    <div class="gestures__image-container">
-                        <img src="imgs/paper.png" class="gestures__item gestures__item_paper">
-                    </div>
-                    <div class="gestures__image-container">
-                        <img src="imgs/scissors.png" class="gestures__item gestures__item_scissors">
-                    </div>
-                </div>
-
-                <div class="button button_play-button">Play</div>
-
-                <div class="results">
-                    <div class="results__item">
-                        Victories: <span class="results__victories-counter"></span>
-                    </div>
-                    <div class="results__item">
-                        Defeats: <span class="results__defeats-counter"></span>
-                    </div>
-                    <div class="results__item">
-                        Draws: <span class="results__draws-counter"></span>
-                    </div>
-                </div>
+        <div class="controls">
+            <div class="controls__title">
+                Choose your gesture!     
             </div>
 
-            <div class="player computer">
-                <div class="computer__title">
-                    Computer    
+            <div class="gestures">
+                <div class="gestures__image-container">
+                    <img src="imgs/rock.png" class="gestures__item gestures__item_rock">
                 </div>
-
-                <div class="gestures">
-                    <div class="gestures__image-container">
-                        <img src="imgs/rock.png" class="gestures__item gestures__item_rock">
-                    </div>
-                    <div class="gestures__image-container">
-                        <img src="imgs/paper.png" class="gestures__item gestures__item_paper">
-                    </div>
-                    <div class="gestures__image-container">
-                        <img src="imgs/scissors.png" class="gestures__item gestures__item_scissors">
-                    </div>
+                <div class="gestures__image-container">
+                    <img src="imgs/paper.png" class="gestures__item gestures__item_paper">
                 </div>
-
-                <div class="button button_waiting-button">Waiting for you...</div>
-
-                <div class="results">
-                    <div class="results__item">
-                        Victories: <span class="results__victories-counter"></span>
-                    </div>
-                    <div class="results__item">
-                        Defeats: <span class="results__defeats-counter"></span>
-                    </div>
-                    <div class="results__item">
-                        Draws: <span class="results__draws-counter"></span>
-                    </div>
+                <div class="gestures__image-container">
+                    <img src="imgs/scissors.png" class="gestures__item gestures__item_scissors">
                 </div>
             </div>
         </div>
@@ -83,21 +35,44 @@
             </h2>
 
             <div class="last-game__data">
-                <div class="last-game__players-choise">
-                    <h3 class="last-game__subtitle">Your choise</h3>
+                <div class="last-game__choise last-game__choise_player">
+                    <h3 class="last-game__subtitle">You</h3>
+                    <div class="gestures__image-container gestures__image-container_unselectable">
+                        <img src="imgs/rock.png" class="gestures__item gestures__item_rock">
+                    </div>
                 </div>
 
                 <div class="last-game__result">
-                    
+                    You win! 
                 </div>
 
-                <div class="last-game__computers-choise">
-                    <h3 class="last-game__subtitle">Computer's choise</h3>
+                <div class="last-game__choise last-game__choise_computer">
+                    <h3 class="last-game__subtitle">Computer</h3>
+                    <div class="gestures__image-container gestures__image-container_unselectable">
+                        <img src="imgs/scissors.png" class="gestures__item gestures__item_scissors">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results">
+            <h2 class="results__title">
+                Total score
+            </h2>
+            <div class="results-data">
+                <div class="results__item">
+                    Victories: <span class="results__victories-counter">0</span>
+                </div>
+                <div class="results__item">
+                    Defeats: <span class="results__defeats-counter">0</span>
+                </div>
+                <div class="results__item">
+                    Draws: <span class="results__draws-counter">0</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <script src="scripts/script.js"></script> -->
+    <script src="scripts/script.js"></script>
 </body>
 </html>
