@@ -40,59 +40,60 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerVictories = 0;
-    let computerVictories = 0;
-    let draws = 0;
+function game(playerSelection) {
+    playerSelection = gestures[playerSelection.toLowerCase()];
 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("What's your gesture?");
-        playerSelection = gestures[playerSelection.toLowerCase()];
+    let computerSelection = computerPlay();
 
-        let playerSelectionCheck = 0;
-        while (!playerSelectionCheck) {
-            if(playerSelection) {
-                playerSelectionCheck = 1;
-            }
+    let winner = playRound(playerSelection, computerSelection);
+    let lastGameResult = document.querySelector('.last-game__result');
 
-            if(!playerSelectionCheck) {
-                playerSelection = prompt("Enter your gesture again please");
-                playerSelection = gestures[playerSelection.toLowerCase()];
-            }
-        }
-
-        let computerSelection = computerPlay();
-
-        let winner = playRound(playerSelection, computerSelection);
-
-        if (winner == 'player') {
-            playerVictories++;
-        }
-
-        if (winner == 'computer') {
-            computerVictories++;
-        }
-
-        if (winner == 'none') {
-            draws++;
-        }
+    if (winner == 'player') {
+        victories++;
+        lastGameResult.textContent = "You win!";
     }
 
-    let result = '';
-
-    if (playerVictories > computerVictories) {
-        result = `You win! Your score is ${playerVictories} and computer score is ${computerVictories}. There were ${draws} rounds with the same figures.`;
+    if (winner == 'computer') {
+        defeats++;
+        lastGameResult.textContent = "You loose!";
     }
 
-    if (playerVictories < computerVictories) {
-        result = `You loose! Your score is ${playerVictories} and computer score is ${computerVictories} There were ${draws} rounds with the same figures.`;
+    if (winner == 'none') {
+        draws++;
+        lastGameResult.textContent = "Draw!";
     }
 
-    if (playerVictories === computerVictories) {
-        result = `It's a draw! Your score is ${playerVictories} and computer score is ${computerVictories} There were ${draws} rounds with the same figures.`
-    }
+    document.querySelector('.results__victories-counter').textContent = victories;
+    document.querySelector('.results__defeats-counter').textContent = defeats;
+    document.querySelector('.results__draws-counter').textContent = draws;
 
-    console.log(result);
+    document.querySelector('.last-game__choise_player .gestures__item').src = `imgs/${playerSelection.name}.png`;
+    document.querySelector('.last-game__choise_computer .gestures__item').src = `imgs/${computerSelection.name}.png`;
 }
 
-game();
+function selectGesture() {
+    if(lastGame.classList.contains('last-game_hidden')) {
+        lastGame.classList.remove('last-game_hidden');
+    }
+
+    for (let playerControl of playerControls) {
+        if (playerControl.classList.contains('gestures__image-container_selected')) {
+            playerControl.classList.remove('gestures__image-container_selected');
+        }
+    }
+
+    this.classList.toggle('gestures__image-container_selected');
+    game(this.dataset.gesture);
+}
+
+let victories = 0;
+let defeats = 0;
+let draws = 0;
+
+let lastGame = document.querySelector('.last-game');
+
+let playerControls = document.querySelectorAll('.gestures .gestures__image-container');
+
+for (let playerControl of playerControls) {
+    playerControl.addEventListener('click', selectGesture);
+}
