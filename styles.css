@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 50px;
 }
@@ -14,7 +14,8 @@ body {
 .page-title {
     margin: 25px auto 0;
     font-weight: bold;
-    width: 625px;
+    text-align: center;
+    max-width: 625px;
     font-size: 64px;
     line-height: 75px;
     background: -webkit-linear-gradient(45deg, #00C2FF 30%, #FF007A 70%);
@@ -24,8 +25,8 @@ body {
 
 .controls {
     margin: 25px auto 0;
-    width: 500px;
-    height: 220px;
+    max-width: 500px;
+    min-height: 220px;
     border: 2px solid #ededed;
 }
 
@@ -41,7 +42,6 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 25px 25px 0;
-    width: 450px;
 }
 
 .gestures__image-container {
@@ -86,6 +86,17 @@ body {
     width: 75px;
 }
 
+@media screen and (max-width: 700px) {
+    .gestures {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gestures__image-container {
+        margin-bottom: 25px;
+    }
+}
+
 .last-game {
     margin: 25px auto;
 }
@@ -95,7 +106,7 @@ body {
 }
 
 .last-game__title {
-    width: 350px;
+    max-width: 350px;
     margin: 0 auto;
     text-align: center;
     font-weight: bold;
@@ -138,6 +149,28 @@ body {
     line-height: 42px;
 }
 
+@media screen and (max-width: 700px) {
+    .last-game__data {
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .last-game__result {
+        order: 1;
+        line-height: 150px;
+    }
+
+    .last-game__choise_player {
+        order: 2;
+        margin-bottom: 25px;
+    }
+
+    .last-game__choise_computer {
+        order: 3;
+    }
+}
+
 .results {
     margin: 25px auto 0;
 }
@@ -160,4 +193,14 @@ body {
     font-weight: 500;
     font-size: 36px;
     line-height: 42px;
+}
+@media screen and (max-width: 700px) {
+    .results-data {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .results__item {
+        margin-bottom: 25px;
+    }
 }
