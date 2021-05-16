@@ -71,7 +71,7 @@ function game(playerSelection) {
     document.querySelector('.last-game__choise_computer .gestures__item').src = `imgs/${computerSelection.name}.png`;
 }
 
-function selectGesture() {
+function selectGesture(elem) {
     if(lastGame.classList.contains('last-game_hidden')) {
         lastGame.classList.remove('last-game_hidden');
     }
@@ -82,8 +82,8 @@ function selectGesture() {
         }
     }
 
-    this.classList.toggle('gestures__image-container_selected');
-    game(this.dataset.gesture);
+    elem.classList.toggle('gestures__image-container_selected');
+    game(elem.dataset.gesture);
 }
 
 let victories = 0;
@@ -92,8 +92,11 @@ let draws = 0;
 
 let lastGame = document.querySelector('.last-game');
 
-let playerControls = document.querySelectorAll('.gestures .gestures__image-container');
-
-for (let playerControl of playerControls) {
-    playerControl.addEventListener('click', selectGesture);
-}
+let controls = document.querySelector('.controls');
+controls.addEventListener('click', function(event) {
+    if (event.target.closest('div').classList.contains('gestures__image-container')) {
+        selectGesture(event.target.closest('div'));
+    } else if (event.target.classList.contains('gestures__image-container')) {
+        selectGesture(event.target);
+    }
+})
