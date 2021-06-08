@@ -76,6 +76,8 @@ function selectGesture(elem) {
         lastGame.classList.remove('last-game_hidden');
     }
 
+    let playerControls = document.querySelectorAll('.gestures__image-container');
+
     for (let playerControl of playerControls) {
         if (playerControl.classList.contains('gestures__image-container_selected')) {
             playerControl.classList.remove('gestures__image-container_selected');
